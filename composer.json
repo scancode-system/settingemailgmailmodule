@@ -1,0 +1,29 @@
+{
+    "name": "scancode/setting-email-gmail-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\SettingEmailGmail\\Providers\\SettingEmailGmailServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\SettingEmailGmail\\": ""
+        }
+    },
+    "type": "laravel-module",
+    "require": {
+        "scancode/portal-module": "0.*"
+    }
+}

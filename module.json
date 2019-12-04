@@ -1,0 +1,14 @@
+{
+    "name": "SettingEmailGmail",
+    "alias": "settingemailgmail",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\SettingEmailGmail\\Providers\\SettingEmailGmailServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
