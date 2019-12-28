@@ -14,7 +14,7 @@ class InsertSettingsRecordsEmailGmail extends Migration
      */
     public function up()
     {
-        Setting::create(['module' => 'SettingEmailGmail', 'alias' => 'Email']);
+        Setting::create(['module' => 'SettingEmailGmail', 'alias' => 'Email', 'import' => 'EmailGmail@setting']);
     }
 
     /**
