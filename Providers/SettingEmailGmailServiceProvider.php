@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Factory;
 
 class SettingEmailGmailServiceProvider extends ServiceProvider
 {
+     /**
+     * @var string $moduleName
+     */
+    protected $moduleName = 'SettingEmailGmail';
+
+    /**
+     * @var string $moduleNameLower
+     */
+    protected $moduleNameLower = 'settingemailgmail';
+
     /**
      * Boot the application events.
      *
@@ -37,7 +47,17 @@ class SettingEmailGmailServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/settingemailgmail');
+                $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
+
+        $sourcePath = module_path($this->moduleName, 'Resources/views');
+
+        $this->publishes([
+            $sourcePath => $viewPath
+        ], ['views', $this->moduleNameLower . '-module-views']);
+
+        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
+
+        /*$viewPath = resource_path('views/modules/settingemailgmail');
 
         $sourcePath = __DIR__.'/../Resources/views';
 
@@ -47,7 +67,7 @@ class SettingEmailGmailServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/settingemailgmail';
-        }, \Config::get('view.paths')), [$sourcePath]), 'settingemailgmail');
+        }, \Config::get('view.paths')), [$sourcePath]), 'settingemailgmail');*/
     }
 
 
@@ -59,5 +79,16 @@ class SettingEmailGmailServiceProvider extends ServiceProvider
     public function provides()
     {
         return [];
+    }
+
+    private function getPublishableViewPaths(): array
+    {
+        $paths = [];
+        foreach (\Config::get('view.paths') as $path) {
+            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
+                $paths[] = $path . '/modules/' . $this->moduleNameLower;
+            }
+        }
+        return $paths;
     }
 }
